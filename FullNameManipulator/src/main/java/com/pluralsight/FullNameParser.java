@@ -2,12 +2,14 @@ package com.pluralsight;
 
 import java.util.Scanner;
 
+        //define strings
 public class FullNameParser {
     private static String firstName;
     private static String middleName;
     private static String lastName;
     private static String suffix;
 
+        //build constructor
     public FullNameParser(String firstName, String middleName, String lastName, String suffix) {
         this.firstName = firstName;
         this.middleName = middleName;
@@ -15,6 +17,7 @@ public class FullNameParser {
         this.suffix = suffix;
     }
 
+        //build getter
     public String getFirstName() {
         return firstName;
     }
@@ -26,19 +29,28 @@ public class FullNameParser {
     public String getLastName() {
         return lastName;
     }
-    public String getSuffix(){
+
+    public String getSuffix() {
         return suffix;
     }
 
+        // building to string
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(getFirstName()).append(" ");
-        if (! getMiddleName().isEmpty()) { sb.append(getMiddleName()).append(" "); }
-        if (! getLastName().isEmpty()) {sb.append(getLastName()).append(" ");}
-        if (! getSuffix().isEmpty()) { sb.append(getSuffix()); }
+        sb.append(getFirstName().trim()).append(" ");
+        if (!getMiddleName().isEmpty()) {
+            sb.append(getMiddleName().trim()).append(" ");
+        }
+        if (!getLastName().isEmpty()) {
+            sb.append(getLastName().trim()).append(" ");
+        }
+        if (!getSuffix().isEmpty()) {
+            sb.append(getSuffix().trim());
+        }
         return sb.toString();
     }
 
+        //user inputs
     public static void main(String[] args) {
         Scanner namescanner = new Scanner(System.in);
 
@@ -51,9 +63,9 @@ public class FullNameParser {
         System.out.println(" Enter your suffix ");
         suffix = namescanner.nextLine();
 
+        //give results
         FullNameParser namechooser = new FullNameParser(firstName, middleName, lastName, suffix);
         System.out.println(namechooser);
-
 
 
     }
