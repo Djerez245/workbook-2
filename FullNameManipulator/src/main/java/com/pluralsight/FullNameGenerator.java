@@ -3,14 +3,14 @@ package com.pluralsight;
 import java.util.Scanner;
 
         //define strings
-public class FullNameParser {
+public class FullNameGenerator {
     private static String firstName;
     private static String middleName;
     private static String lastName;
     private static String suffix;
 
         //build constructor
-    public FullNameParser(String firstName, String middleName, String lastName, String suffix) {
+    public FullNameGenerator(String firstName, String middleName, String lastName, String suffix) {
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
@@ -64,7 +64,7 @@ public class FullNameParser {
         suffix = namescanner.nextLine();
 
         //give results
-        FullNameParser namechooser = new FullNameParser(firstName, middleName, lastName, suffix);
+        FullNameGenerator namechooser = new FullNameGenerator(firstName, middleName, lastName, suffix);
         System.out.println(namechooser);
 
 
