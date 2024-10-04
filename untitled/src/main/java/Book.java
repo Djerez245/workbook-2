@@ -8,14 +8,14 @@ public class Book {
     boolean isCheckedOut;
     String checkedOutTo;
 
-    public String toString(){
-    StringBuilder sb = new StringBuilder();
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
         sb.append("Book ID is: ").append(id);
         sb.append("The book isbn number is: ").append(isbn);
         sb.append("The book title is: ");
         sb.append("The book is checked out").append(isCheckedOut);
         sb.append("The book is checked out to: ");
-        return sb toString();
+        return sb.toString();
     }
 
 
@@ -31,20 +31,40 @@ public class Book {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getIsbn() {
         return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
     }
 
     public String getTitle() {
         return title;
     }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public boolean isCheckedOut() {
         return isCheckedOut;
     }
 
+    public void setCheckedOut(boolean checkedOut) {
+        isCheckedOut = checkedOut;
+    }
+
     public String getCheckedOutTo() {
         return checkedOutTo;
+    }
+
+    public void setCheckedOutTo(String checkedOutTo) {
+        this.checkedOutTo = checkedOutTo;
     }
 
     public static void main(String[] args) {
@@ -78,30 +98,48 @@ public class Book {
 
 
         System.out.println("""
-                    ========================================================
-                                      WELCOME TO THE LIBRARY
-                    ========================================================
-                                  Please only enter a number 1-3
-                    
-                                 Select 1 to see Available books
-                    
-                                 Select 2 to see checked out books
-                    
-                                      Select 3 to exit""");
-        int choice = scanner.nextInt();
+                ========================================================
+                                  WELCOME TO THE LIBRARY
+                ========================================================
+                """);
 
+        String prompt = ("""
+                 Please only enter a number 1-3
+                
+                Select 1 to see Available books
+                
+                Select 2 to see checked out books
+                
+                     Select 3 to exit""");
 
         boolean mainLoop = true;
         while (mainLoop) {
-            if (choice == 1){
-                for (int i = 0; i < allBooks.length; i++){
+
+            System.out.println(prompt);
+
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+
+            if (choice == 1) {
+                for (int i = 0; i < allBooks.length; i++) {
                     System.out.println(allBooks[i]);
-                    mainLoop = false; }
-                System.out.println("Select 2 to see checked out books or select 3 to exit");
-
+//                    mainLoop = false;
+                }
+//                System.out.println("Select 2 to see checked out books or select 3 to exit");
+            } else if (choice == 2) {
+                for (int i = 0; i < allBooks.length; i++) {
+                    if (allBooks[i].isCheckedOut) {
+                        System.out.println(allBooks[i]);
+                    }
+                }
+            } else if (choice == 3) {
+                mainLoop = false;
             }
-
 
         }
     }
+
+
 }
+
+
