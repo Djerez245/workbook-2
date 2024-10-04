@@ -59,6 +59,19 @@ public class neighborhoodLibrary {
                     if (!allBooks[i].isCheckedOut)
                         System.out.println(allBooks[i]);
                 }
+
+                System.out.println("\nif you would like to check-out 'C'!\n");
+                String input = scanner.nextLine();
+                if (input.equals("C") || input.equals("c")) {
+                    System.out.println("Enter the book ID number: ");
+                    int bookNumber = scanner.nextInt();
+                    scanner.nextLine();
+                    for (Book b : allBooks) {
+                        if (b.isCheckedOut && b.getId() == bookNumber) {
+                            b.setCheckedOut(true);
+                        }
+                    }
+                }
             }
             else if (choice == 2) {
                 for (int i = 0; i < allBooks.length; i++) {
@@ -66,15 +79,38 @@ public class neighborhoodLibrary {
                         System.out.println(allBooks[i]);
                     }
                 }
+                System.out.println("\nif you would like to check-in 'C'!\n");
+                String input2 = scanner.nextLine();
+                if (input2.equals("C") || input2.equals("c")) {
+                    System.out.println("Enter the book ID number: ");
+                    int bookNumber2 = scanner.nextInt();
+//                    scanner.nextLine();
+                    System.out.println(bookNumber2);
+                    for (Book b2 : allBooks) {
+                        if (b2.isCheckedOut && b2.getId() == bookNumber2) {
+                            b2.setCheckedOut(false);
+                        }
+                    }
+                }
             }
             else if (choice == 3) {
                 mainLoop = false;
             }
-
-
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
