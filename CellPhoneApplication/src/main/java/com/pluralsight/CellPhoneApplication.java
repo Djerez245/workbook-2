@@ -33,11 +33,12 @@ public class CellPhoneApplication {
         System.out.println("Carrier: " + CellPhone.getCarrier());
         System.out.println("Phone Number: "+ CellPhone.getPhoneNumber());
         System.out.println("Owner: " + CellPhone.getOwner());
+    }
 
-
-
-
-
+    public static void display(CellPhone phone){
+        CellPhone dialPhone =new CellPhone();
+        display(cellPhone1);
+        display(cellPhone2);
     }
 }
 

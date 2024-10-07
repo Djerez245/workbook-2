@@ -51,5 +51,15 @@ public class CellPhone {
         this.owner = owner;
     }
 
+    public void dial() {
+
+        String cellPhone1 = ("855-555-2222");
+
+
+
+    }
+
+
+
 
 }
