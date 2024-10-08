@@ -2,9 +2,11 @@ import java.util.Scanner;
 
 public class neighborhoodLibrary {
 
+    static Scanner scanner;
+
     public static void main(String[] args) {
 
-        Scanner scanner = new Scanner(System.in);
+        scanner = new Scanner(System.in);
 
         Book book1 = new Book(1, "978-0451524935", "To Kill a Mockingbird", false, "");
         Book book2 = new Book(2, "978-0451524935", "1984", false, "");
@@ -32,6 +34,7 @@ public class neighborhoodLibrary {
                 book12, book13, book14, book15, book16, book17, book18, book19, book20};
 
 
+
         System.out.println("""
                 ========================================================
                                   WELCOME TO THE LIBRARY
@@ -39,11 +42,16 @@ public class neighborhoodLibrary {
                 """);
 
         String prompt = ("""
-                 Please only enter a number 1-3
                 
-                Select 1 to see Available books
+                What can I do for You?
                 
-                Select 2 to see checked out books
+                Please only enter a number! (1 - 3)
+                
+                If you would like to see our Available books
+                (Select 1)
+                
+                If you would like to see the checked out books
+                (Select 2)
                 
                      Select 3 to exit""");
 
@@ -55,50 +63,76 @@ public class neighborhoodLibrary {
             scanner.nextLine();
 
             if (choice == 1) {
-                for (int i = 0; i < allBooks.length; i++) {
-                    if (!allBooks[i].isCheckedOut)
-                        System.out.println(allBooks[i]);
-                }
-
-                System.out.println("\nif you would like to check-out 'C'!\n");
-                String input = scanner.nextLine();
-                if (input.equals("C") || input.equals("c")) {
-                    System.out.println("Enter the book ID number: ");
-                    int bookNumber = scanner.nextInt();
-                    scanner.nextLine();
-                    for (Book b : allBooks) {
-                        if (b.isCheckedOut && b.getId() == bookNumber) {
-                            b.setCheckedOut(true);
-                        }
-                    }
-                }
-            }
-            else if (choice == 2) {
-                for (int i = 0; i < allBooks.length; i++) {
-                    if (allBooks[i].isCheckedOut) {
-                        System.out.println(allBooks[i]);
-                    }
-                }
-                System.out.println("\nif you would like to check-in 'C'!\n");
-                String input2 = scanner.nextLine();
-                if (input2.equals("C") || input2.equals("c")) {
-                    System.out.println("Enter the book ID number: ");
-                    int bookNumber2 = scanner.nextInt();
-//                    scanner.nextLine();
-                    System.out.println(bookNumber2);
-                    for (Book b2 : allBooks) {
-                        if (b2.isCheckedOut && b2.getId() == bookNumber2) {
-                            b2.setCheckedOut(false);
-                        }
-                    }
-                }
-            }
-            else if (choice == 3) {
+                showAllBooks(allBooks);
+            } else if (choice == 2) {
+                System.out.println("""
+                ========================================================
+                                    Checked-out Books
+                ========================================================
+                """);
+                showCheckedOut(allBooks);
+            } else if (choice == 3) {
+                System.out.println("""
+                ========================================================
+                                 GOOD-BYE COME BACK SOON
+                ========================================================
+                """);
                 mainLoop = false;
             }
         }
     }
+
+    private static void showCheckedOut(Book[] allBooks) {
+        for (int i = 0; i < allBooks.length; i++) {
+            if (allBooks[i].isCheckedOut()) {
+                System.out.println(allBooks[i]);
+            }
+        }
+        System.out.println("\nif you would like to check-in 'C'!\n");
+        String input2 = scanner.nextLine();
+        if (input2.equals("C") || input2.equals("c")) {
+            System.out.println("Enter the book ID number: ");
+            int bookNumber2 = scanner.nextInt();
+            scanner.nextLine();
+            System.out.println(bookNumber2);
+            for (Book b2 : allBooks) {
+                if (b2.isCheckedOut() && b2.getId() == bookNumber2) {
+                    b2.setCheckedOut(false);
+                    b2.setCheckedOutTo(" ");
+                    System.out.println("Thank you! Come back soon");
+                }
+            }
+        }
+    }
+
+    private static void showAllBooks(Book[] allBooks) {
+
+        for (int i = 0; i < allBooks.length; i++) {
+            if (!allBooks[i].isCheckedOut())
+                System.out.println(allBooks[i]);
+        }
+
+        System.out.println("\nif you would like to check-out a book enter 'C'!\n");
+        String input = scanner.nextLine();
+        if (input.equals("C") || input.equals("c")) {
+            System.out.println("Enter your name: ");
+            String patronName = scanner.nextLine();
+            System.out.println("Enter the book ID number to the book you would like to checked-out: ");
+            int bookNumber = scanner.nextInt();
+            scanner.nextLine();
+            for (Book b : allBooks) {
+                if (! b.isCheckedOut() && b.getId() == bookNumber) {
+                    b.setCheckedOut(true);
+                    b.setCheckedOutTo(patronName);
+                    System.out.println("Thank You" + patronName);
+
+                }
+            }
+        }
+    }
+
 }
+
 
 
 
