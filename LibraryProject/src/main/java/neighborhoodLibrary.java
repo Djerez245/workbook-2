@@ -35,6 +35,7 @@ public class neighborhoodLibrary {
 
 
 
+
         System.out.println("""
                 ========================================================
                                   WELCOME TO THE LIBRARY
@@ -124,7 +125,7 @@ public class neighborhoodLibrary {
                 if (! b.isCheckedOut() && b.getId() == bookNumber) {
                     b.setCheckedOut(true);
                     b.setCheckedOutTo(patronName);
-                    System.out.println("Thank You" + patronName);
+                    System.out.println("Thank You " + patronName);
 
                 }
             }
@@ -132,23 +133,6 @@ public class neighborhoodLibrary {
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
